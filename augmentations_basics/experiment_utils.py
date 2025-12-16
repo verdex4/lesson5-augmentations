@@ -18,7 +18,6 @@ import time
 import tracemalloc
 import psutil
 import gc
-from memory_profiler import memory_usage
 
 PROJECT_ROOT = "C:/Users/verdex/lesson5-augmentations"
 
