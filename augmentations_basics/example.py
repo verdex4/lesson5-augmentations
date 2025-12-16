@@ -2,7 +2,7 @@ import torch
 from torchvision import transforms
 from PIL import Image
 from datasets import CustomImageDataset
-from utils import show_images, show_single_augmentation, show_multiple_augmentations
+from augmentations_basics.experiment_utils import show_images, show_single_augmentation, show_multiple_augmentations
 from extra_augs import (AddGaussianNoise, RandomErasingCustom, CutOut, 
                        Solarize, Posterize, AutoContrast, ElasticTransform)
 

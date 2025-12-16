@@ -3,6 +3,48 @@ import random
 import numpy as np
 import cv2
 from PIL import Image, ImageEnhance, ImageOps
+from torchvision import transforms
+
+def get_extra_augs():
+    noise_aug = transforms.Compose([
+        transforms.ToTensor(),
+        AddGaussianNoise(0., 0.2)
+    ])
+    erase_aug = transforms.Compose([
+    transforms.ToTensor(),
+    RandomErasingCustom(p=1.0)
+    ])
+    cutout_aug = transforms.Compose([
+        transforms.ToTensor(),
+        CutOut(p=1.0, size=(32, 32))
+    ])
+    solarize_aug = transforms.Compose([
+        transforms.ToTensor(),
+        Solarize(threshold=128)
+    ])
+    posterize_aug = transforms.Compose([
+        transforms.ToTensor(),
+        Posterize(bits=4)
+    ])
+    autocontrast_aug = transforms.Compose([
+        transforms.ToTensor(),
+        AutoContrast(p=1.0)
+    ])
+    elastic_aug = transforms.Compose([
+        transforms.ToTensor(),
+        ElasticTransform(p=1.0, alpha=1, sigma=50)
+    ])
+
+    augs = [
+        ("Гауссов шум", noise_aug),
+        ("Random Erasing", erase_aug),
+        ("CutOut", cutout_aug), 
+        ("Solarize", solarize_aug), 
+        ("Posterize", posterize_aug),
+        ("AutoContrast", autocontrast_aug), 
+        ("Elastic Transform", elastic_aug)
+    ]
+    return augs
 
 class AddGaussianNoise:
     """Добавляет гауссов шум к изображению."""
@@ -122,4 +164,4 @@ class MixUp:
         if random.random() > self.p:
             return img1
         lam = np.random.beta(self.alpha, self.alpha)
-        return lam * img1 + (1 - lam) * img2 
+        return lam * img1 + (1 - lam) * img2
