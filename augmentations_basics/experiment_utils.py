@@ -20,6 +20,7 @@ import psutil
 import gc
 
 PROJECT_ROOT = "C:/Users/verdex/lesson5-augmentations"
+PROJECT_ROOT = "C:/Users/student/lesson5-augmentations"
 
 def split_train_val(train_path=f'{PROJECT_ROOT}/data/train', 
                     val_path=f'{PROJECT_ROOT}/data/val', 
