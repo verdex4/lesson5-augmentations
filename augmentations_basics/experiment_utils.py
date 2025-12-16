@@ -488,7 +488,7 @@ def train_model(using_augs: bool = False):
         train_losses, val_losses, test_losses = [], [], []
         train_accuracies, val_accuracies, test_accuracies = [], [], []
 
-        for epoch in range(1):
+        for epoch in range(7):
             # Тренировка
             model.train()
 
